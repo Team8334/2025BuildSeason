@@ -6,51 +6,43 @@ import java.util.List;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SeriesAction implements Actions
-{
+public class SeriesAction implements Actions {
     private ArrayList<Actions> actionsToExecute;
     private int currentActionIndex;
 
     /**
      * Takes list of actions
      */
-    public SeriesAction(List<Actions> actions)
-    {
+    public SeriesAction(List<Actions> actions) {
         actionsToExecute = new ArrayList<>(actions);
     }
 
     /**
      * Takes array of actions
      */
-    public SeriesAction(Actions... actions)
-    {
+    public SeriesAction(Actions... actions) {
         actionsToExecute = new ArrayList<>(Arrays.asList(actions));
     }
 
     @Override
-    public void start()
-    {
+    public void start() {
         actionsToExecute.get(currentActionIndex).start();
         SmartDashboard.putString( "Current Action System", "SeriesAction Started");
     }
 
     @Override
-    public void update()
-    {
+    public void update() {
         actionsToExecute.get(currentActionIndex).update();
     }
 
     @Override
-    public boolean isFinished()
-    {
-        if (actionsToExecute.get(currentActionIndex).isFinished()) 
-        {
+    public boolean isFinished() {
+        if (actionsToExecute.get(currentActionIndex).isFinished()) {
             actionsToExecute.get(currentActionIndex).done();
             currentActionIndex++;
             //currentActionIndex will be incremented at this point
             //therefore if the current action is the last one, it will be equal to the the array list size instead of said size minus one
-            if (currentActionIndex == actionsToExecute.size()) 
-            { 
+            if (currentActionIndex == actionsToExecute.size()) { 
                 return true; 
             }
             
@@ -60,8 +52,7 @@ public class SeriesAction implements Actions
     }
 
     @Override
-    public void done()
-    {
+    public void done() {
         SmartDashboard.putString( "Current Action System", "SeriesAction Ended");
     }
 }
