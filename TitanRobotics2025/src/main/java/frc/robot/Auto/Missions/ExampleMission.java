@@ -13,13 +13,12 @@ import frc.robot.Auto.Actions.TurnDegreesAction;
 import frc.robot.Auto.Actions.WaitAction;
 import frc.robot.Auto.Actions.SeriesAction;
 
-public class ExampleMission extends MissionBase 
-{
+public class ExampleMission extends MissionBase {
     @Override
-    protected void routine() throws AutoMissionEndedException 
-    {
+    protected void routine() throws AutoMissionEndedException {
         runAction(new WaitAction(AutoMissionChooser.delay));
-        runAction(new TurnDegreesAction(90, 3.0)); //plus is left
+        //runAction(new TurnDegreesAction(90, 3.0)); //plus is left
+
         //runAction(new DriveForTimeAction (1.0, 0.7));
         //runAction(new ScoringSystemStateAction(2.0, "intaking"));
         //runAction(new FrontPickupNoteAction(0.7, 5.0));

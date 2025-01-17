@@ -7,10 +7,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutoMissionChooser
-{
-    enum DesiredMission
-    {
+public class AutoMissionChooser {
+    enum DesiredMission {
         doNothing,
         leaveCommunityRight,
         exampleMission,
@@ -29,8 +27,7 @@ public class AutoMissionChooser
 
     String alliance;
 
-    public AutoMissionChooser()
-    {
+    public AutoMissionChooser() {
         missionChooser = new SendableChooser<>();
 
         missionChooser.setDefaultOption("Do Nothing", DesiredMission.doNothing);
@@ -47,38 +44,31 @@ public class AutoMissionChooser
         SmartDashboard.putData("Auto Mission", missionChooser);
         SmartDashboard.putString("Current Action System", "None");
 
-        try
-        {
+        try {
             alliance = DriverStation.getAlliance().orElseThrow(() -> new Exception("No alliance")).toString();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             // Handle the exception, for example:
             System.out.println("Exception occurred: " + e.getMessage());
         }
     }
 
-    public void updateMissionCreator()
-    {
-        try
-        {
+    public void updateMissionCreator() {
+        try {
             alliance = DriverStation.getAlliance().orElseThrow(() -> new Exception("No alliance")).toString();
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             // Handle the exception, for example:
             System.out.println("Exception occurred: " + e.getMessage());
         }
         delay = SmartDashboard.getNumber("Auto Delay", 0);
         DesiredMission desiredMission = missionChooser.getSelected();
 
-        if (desiredMission == null)
-        {
+        if (desiredMission == null) {
             desiredMission = DesiredMission.doNothing;
         }
 
-        if (cachedDesiredMission != desiredMission)
-        {
+        if (cachedDesiredMission != desiredMission) {
             System.out.println("Auto selection changed, updating creator: desiredMission->" + desiredMission.name());
             autoMission = getAutoMissionForParams(desiredMission);
         }
@@ -86,10 +76,8 @@ public class AutoMissionChooser
         cachedDesiredMission = desiredMission;
     }
 
-    private Optional<MissionBase> getAutoMissionForParams(DesiredMission mission)
-    {
-        switch (mission)
-        {
+    private Optional<MissionBase> getAutoMissionForParams(DesiredMission mission) {
+        switch (mission) {
             case doNothing:
                 return Optional.of(new DoNothingMission());
             case leaveCommunityRight:
@@ -99,29 +87,23 @@ public class AutoMissionChooser
             case TwoNoteMission:
                 return Optional.of(new TwoNoteMission());
             case ScoringMission:
-                if (alliance == "Red")
-                {
+                if (alliance == "Red") {
                     return Optional.of(new RedScoringMission());
                 }
-                else if (alliance == "Blue")
-                {
+                else if (alliance == "Blue") {
                     return Optional.of(new BlueScoringMission());
                 }
-                else
-                {
+                else {
                     return Optional.of(new DoNothingMission());
                 }
             case ScoringThenMovingMission:
-                if (alliance == "Red")
-                {
+                if (alliance == "Red") {
                     return Optional.of(new RedScoreMoveOutMission());
                 }
-                else if (alliance == "Blue")
-                {
+                else if (alliance == "Blue") {
                     return Optional.of(new BlueScoreMoveOutMission());
                 }
-                else
-                {
+                else {
                     return Optional.of(new DoNothingMission());
                 }
 
@@ -131,19 +113,16 @@ public class AutoMissionChooser
         }
     }
 
-    public void reset()
-    {
+    public void reset() {
         autoMission = Optional.empty();
         cachedDesiredMission = DesiredMission.doNothing;
     }
 
-    public void outputToSmartDashboard()
-    {
+    public void outputToSmartDashboard() {
         SmartDashboard.putString("AutoMissionSelected", cachedDesiredMission.name());
     }
 
-    public Optional<MissionBase> getAutoMission()
-    {
+    public Optional<MissionBase> getAutoMission() {
         return autoMission;
     }
 }
