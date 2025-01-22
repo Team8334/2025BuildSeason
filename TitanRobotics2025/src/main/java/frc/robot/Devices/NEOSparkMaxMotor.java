@@ -1,28 +1,48 @@
 package frc.robot.Devices;
 
 import edu.wpi.first.wpilibj.CAN;
-import edu.wpi.first.wpilibj.drive.RobotDriveBase.MotorType;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.revrobotics.spark.*;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 public  class NEOSparkMaxMotor {
+    // REV robotics changed "CANSparkMax" to "SparkMax"
 
-    private CANSparkMax m_motor;
-    private static int portNumber;
+    private SparkMax m_motor;
+    private int CANID;
+    private boolean isInverted;
 
-    public NEOSparkMaxMotor(){
-        m_motor = new CANSparkMax(portNumber, MotorType.kBrushless);
+    public NEOSparkMaxMotor(int CANID){
+        
+        this.CANID = CANID;
+        try {
+            m_motor = new SparkMax(CANID,MotorType.kBrushless);
+        }
+        catch(Exception e) {
+            m_motor = null;
+            System.out.println("SparkMax not found: " + CANID);
+        }
     }
     public String getName(){
-        return "";
+        return "SparkMax CAN ID:" + CANID;
     }
     public boolean isOperational(){
-       return ;
+       if (m_motor == null){
+        return false;
+       }
+       else {
+        return true;
+       }
     }
-    public double set(double speed){
-        return speed;
+    public void set(double speed){
+       
+        if (isInverted){
+            speed*=-1;
+        }
+        m_motor.set(speed);
     }
     public void setInverted(boolean isInverted){
+        this.isInverted = isInverted;
         
     }
 

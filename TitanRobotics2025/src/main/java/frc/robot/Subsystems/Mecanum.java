@@ -3,15 +3,34 @@ package frc.robot.Subsystems;
 import frc.robot.Data.PortMap;
 import frc.robot.Data.Settings;
 import frc.robot.Devices.NEOSparkMaxMotor;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.MecanumDriveKinematics;
+import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 
 public class Mecanum implements Subsystem {
-    
+
     private static Mecanum instance = null;
 
-  private NEOSparkMaxMotor rearLeftMotor;
-  private NEOSparkMaxMotor frontRightMotor;
-  private NEOSparkMaxMotor rearRightMotor;
-  private NEOSparkMaxMotor frontLeftMotor;
+    private NEOSparkMaxMotor rearLeftMotor;
+    private NEOSparkMaxMotor frontRightMotor;
+    private NEOSparkMaxMotor rearRightMotor;
+    private NEOSparkMaxMotor frontLeftMotor;
+
+    private double frontLeft;
+    private double frontRight;
+    private double rearLeft;
+    private double rearRight;
+
+    // distance of wheels from center in meters
+    Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381); // these are not actually measured
+    Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381); // these are not actually measured
+    Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381); // these are not actually measured
+    Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381); // these are not actually measured
+
+    // Creating my kinematics object using the wheel locations.
+    MecanumDriveKinematics m_kinematics = new MecanumDriveKinematics(
+            m_frontLeftLocation, m_frontRightLocation, m_backLeftLocation, m_backRightLocation);
 
     public static Mecanum getInstance() {
         if (instance == null) {
@@ -21,24 +40,37 @@ public class Mecanum implements Subsystem {
     }
 
     public Mecanum() {
-        if (Settings.ENABLE_MECANUM_DRIVE){
+        if (Settings.ENABLE_MECANUM_DRIVE) {
             SubsystemManager.registerSubsystem(this);
         }
     }
 
     public void initialize() {
-    this.frontLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_RIGHT.portNumber);
-    this.rearLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_LEFT.portNumber);
-    this.frontRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_RIGHT.portNumber);
-    this.rearRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_LEFT.portNumber);
+        this.frontLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_RIGHT);
+        this.rearLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_LEFT);
+        this.frontRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_RIGHT);
+        this.rearRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_LEFT);
     }
 
     public void drive(double forward, double strafe, double rotation) {
-        // TODO implement driving. 
+        // Example chassis speeds: 1 meter per second forward, 3 meters
+        // per second to the left, and rotation at 1.5 radians per second
+        // counterclockwise.
+        ChassisSpeeds speeds = new ChassisSpeeds(1.0, 3.0, 1.5);
+        // Convert to wheel speeds
+        MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(speeds);
+        // Get the individual wheel speeds
+        frontLeft = wheelSpeeds.frontLeftMetersPerSecond;
+        frontRight = wheelSpeeds.frontRightMetersPerSecond;
+        rearLeft = wheelSpeeds.rearLeftMetersPerSecond;
+        rearRight = wheelSpeeds.rearRightMetersPerSecond;
     }
 
     public void update() {
-
+        frontLeftMotor.set(frontLeft);
+        frontRightMotor.set(frontRight);
+        rearLeftMotor.set(rearLeft);
+        rearRightMotor.set(rearRight);
     }
 
     public void log() {
