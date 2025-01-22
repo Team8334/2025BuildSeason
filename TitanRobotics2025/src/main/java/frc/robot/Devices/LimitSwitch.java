@@ -9,7 +9,6 @@ public class LimitSwitch implements Devices {
     private DigitalInput limitswitch;
     
     public LimitSwitch(int port) {
-        super();
         //TODO Auto-generated constructor stub
 
         try
