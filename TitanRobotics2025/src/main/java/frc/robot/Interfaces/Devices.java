@@ -4,6 +4,7 @@ public interface Devices {
 
     boolean isOperational();
 
+
     default void logData() {
 
     }

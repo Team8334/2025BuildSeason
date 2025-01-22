@@ -1,12 +1,17 @@
 package frc.robot.Subsystems;
 
+import frc.robot.Data.PortMap;
 import frc.robot.Data.Settings;
+import frc.robot.Devices.NEOSparkMaxMotor;
 
 public class Mecanum implements Subsystem {
     
     private static Mecanum instance = null;
 
-    
+  private NEOSparkMaxMotor rearLeftMotor;
+  private NEOSparkMaxMotor frontRightMotor;
+  private NEOSparkMaxMotor rearRightMotor;
+  private NEOSparkMaxMotor frontLeftMotor;
 
     public static Mecanum getInstance() {
         if (instance == null) {
@@ -22,7 +27,10 @@ public class Mecanum implements Subsystem {
     }
 
     public void initialize() {
-
+    this.frontLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_RIGHT.portNumber);
+    this.rearLeftMotor = new NEOSparkMaxMotor(PortMap.MECANUM_FRONT_LEFT.portNumber);
+    this.frontRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_RIGHT.portNumber);
+    this.rearRightMotor = new NEOSparkMaxMotor(PortMap.MECANUM_BACK_LEFT.portNumber);
     }
 
     public void drive(double forward, double strafe, double rotation) {
