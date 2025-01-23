@@ -1,42 +1,38 @@
 package frc.robot.Devices;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import frc.robot.Interfaces.Devices;
 import frc.robot.Data.PortMap;
+import frc.robot.Interfaces.Devices;
 
 public class LimitSwitch implements Devices {
 
-    private DigitalInput limitswitch;
-    
-    public LimitSwitch(int port) {
-        super();
-        //TODO Auto-generated constructor stub
+  private DigitalInput limitswitch;
 
-        try
-        {
-            limitswitch = new DigitalInput(PortMap.LIMITSWITCH);
-        }
-        catch (Exception e)
-        {
+  public LimitSwitch(int port) {
+    super();
+    // TODO Auto-generated constructor stub
 
-            limitswitch = null;
-        }
+    try {
+      limitswitch = new DigitalInput(PortMap.LIMITSWITCH);
+    } catch (Exception e) {
+
+      limitswitch = null;
     }
+  }
 
-    public boolean isSwitchPressed(){
-       return limitswitch.get();
-    }
+  public boolean isSwitchPressed() {
+    return limitswitch.get();
+  }
 
-    public boolean isOperational(){
-       if (limitswitch == null){
-        return false;
-       }
-       else{
-       return true;
-       }
+  public boolean isOperational() {
+    if (limitswitch == null) {
+      return false;
+    } else {
+      return true;
     }
+  }
 
-    public String getName(){
-        return "limit switch";
-    }
+  public String getName() {
+    return "limit switch";
+  }
 }

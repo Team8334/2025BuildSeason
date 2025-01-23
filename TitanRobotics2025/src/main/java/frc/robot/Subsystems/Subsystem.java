@@ -1,13 +1,13 @@
 package frc.robot.Subsystems;
 
-public interface Subsystem{
-    public void update();
+public interface Subsystem {
+  public void update();
 
-    public void initialize();
+  public void initialize();
 
-    public void log();
+  public void log();
 
-    public boolean isEnabled();
+  public boolean isEnabled();
 
-    public String getName();
+  public String getName();
 }
