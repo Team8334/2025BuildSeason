@@ -13,14 +13,15 @@
 
 package frc.robot;
 
-import frc.robot.Subsystems.Mecanum;
-import frc.robot.Subsystems.SubsystemManager;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
+
+import frc.robot.Subsystems.Mecanum;
+import frc.robot.Subsystems.SubsystemManager;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -73,11 +74,13 @@ public class Robot extends LoggedRobot {
     // Start AdvantageKit logger
     Logger.start();
 
-    // add other subsystems under here.
+    //add other subsystems under here.
     Mecanum.getInstance();
 
     SubsystemManager.initializeSubsystems();
   }
+
+
 
   /** This function is called periodically during all modes. */
   @Override
@@ -85,6 +88,7 @@ public class Robot extends LoggedRobot {
 
     SubsystemManager.updateSubsystems();
   }
+  
 
   /** This function is called once when the robot is disabled. */
   @Override

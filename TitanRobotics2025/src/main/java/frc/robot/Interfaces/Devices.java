@@ -2,9 +2,12 @@ package frc.robot.Interfaces;
 
 public interface Devices {
 
-  boolean isOperational();
+    boolean isOperational();
 
-  default void logData() {}
+    default void logData() {
 
-  String getName();
+    }
+
+    String getName();
+
 }
