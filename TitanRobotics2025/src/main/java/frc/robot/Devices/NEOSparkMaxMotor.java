@@ -3,6 +3,8 @@ package frc.robot.Devices;
 import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public  class NEOSparkMaxMotor {
     // REV robotics changed "CANSparkMax" to "SparkMax"
 
@@ -37,7 +39,12 @@ public  class NEOSparkMaxMotor {
         if (isInverted){
             speed*=-1;
         }
-        m_motor.set(speed);
+        SmartDashboard.putNumber(this.getName()+"/set speed", speed);
+        if (m_motor == null) {
+            System.out.println("YOU SET THE SPEED OF A NONEXISTANT MOTOR");
+        } else {
+            m_motor.set(speed);
+        }
     }
     public void setInverted(boolean isInverted){
         this.isInverted = isInverted;
