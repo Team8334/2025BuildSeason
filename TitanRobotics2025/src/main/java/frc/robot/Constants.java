@@ -14,6 +14,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.math.util.Units;
 
 /**
  * This class defines the runtime mode used by AdvantageKit. The mode is always "real" when running
@@ -23,6 +24,25 @@ import edu.wpi.first.wpilibj.RobotBase;
 public final class Constants {
   public static final Mode simMode = Mode.SIM;
   public static final Mode currentMode = RobotBase.isReal() ? Mode.REAL : simMode;
+
+  public static final double KElevatorKp = 0; // source had 5
+  public static final double kElevatorKi = 0;
+  public static final double kElevatorKd = 0;
+
+  public static final double kElevatorkS = 0.0; //volts (V)
+  public static final double kElevatorkG = 0.0; // volts (V)
+  public static final double kElevatorkV = 0.0; //volt per velocity
+  public static final double kElevatorkA = 0.0; // bolt per acceleration
+
+  public static final double kElevatorGearing = 0.0; //source had 10
+  public static final double kElevatorDrumRadius = Units.inchesToMeters(2.0);
+  public static final double kCarriageMass = 0.0; // it's in kg
+
+  public static final double kSetpointMeters = 0.75; // constant setpoint
+  public static final double kMinElevatorHeightMeters = 0.0;
+  public static final double kMaxElevatorHeightMeters = 1.25;
+
+  public static final double kElevatorEncoderDistPerPulse = 2.0 * Math.PI * kElevatorDrumRadius / 4096;
 
   public static enum Mode {
     /** Running on a real robot. */
