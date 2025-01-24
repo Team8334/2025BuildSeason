@@ -1,7 +1,5 @@
 package frc.robot.Devices;
 
-import edu.wpi.first.wpilibj.CAN;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.revrobotics.spark.*;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 
