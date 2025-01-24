@@ -71,7 +71,6 @@ public class AutoMissionChooser {
         switch (mission) {
             case doNothing:
                 return Optional.of(new DoNothingMission());
-    
             default:
                 System.err.println("No valid autonomous mission found for" + mission);
                 return Optional.empty();
