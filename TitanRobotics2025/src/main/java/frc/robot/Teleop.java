@@ -20,7 +20,7 @@ Controller driverController;
     }
 
     public void teleopPeriodic() {
-
+        driveBaseControl();
     }
 
     public void driveBaseControl() {

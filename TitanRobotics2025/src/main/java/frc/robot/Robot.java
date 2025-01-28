@@ -30,6 +30,9 @@ import frc.robot.Subsystems.SubsystemManager;
  * project.
  */
 public class Robot extends LoggedRobot {
+
+    Teleop teleop;
+
   public Robot() {
     // Record metadata
     Logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
@@ -76,6 +79,7 @@ public class Robot extends LoggedRobot {
 
     //add other subsystems under here.
     Mecanum.getInstance();
+    teleop = new Teleop();
 
     SubsystemManager.initializeSubsystems();
   }
@@ -112,7 +116,11 @@ public class Robot extends LoggedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+
+    teleop.teleopPeriodic();
+
+  }
 
   /** This function is called once when test mode is enabled. */
   @Override

@@ -16,7 +16,7 @@ public  class NEOSparkMaxMotor {
         
         this.CANID = CANID;
         try {
-            m_motor = new SparkMax(CANID,MotorType.kBrushless);
+            m_motor = new SparkMax(CANID,SparkLowLevel.MotorType.kBrushless);
         }
         catch(Exception e) {
             m_motor = null;
@@ -41,7 +41,7 @@ public  class NEOSparkMaxMotor {
         }
         SmartDashboard.putNumber(this.getName()+"/set speed", speed);
         if (m_motor == null) {
-            System.out.println("YOU SET THE SPEED OF A NONEXISTANT MOTOR");
+            System.out.println("YOU SET THE SPEED OF A NONEXISTANT MOTOR: " + CANID);
         } else {
             m_motor.set(speed);
         }
