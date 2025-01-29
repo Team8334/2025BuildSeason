@@ -21,6 +21,7 @@ import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
+import frc.robot.Devices.NEOSparkMax;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -29,6 +30,9 @@ import org.littletonrobotics.junction.wpilog.WPILOGWriter;
  * project.
  */
 public class Robot extends LoggedRobot {
+
+  NEOSparkMax neo;
+
   public Robot() {
     // Record metadata
     Logger.recordMetadata("ProjectName", BuildConstants.MAVEN_NAME);
@@ -75,6 +79,7 @@ public class Robot extends LoggedRobot {
 
     // add other subsystems under here.
     Mecanum.getInstance();
+    
 
     SubsystemManager.initializeSubsystems();
   }
@@ -108,7 +113,9 @@ public class Robot extends LoggedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    
+  }
 
   /** This function is called once when test mode is enabled. */
   @Override
