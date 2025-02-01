@@ -56,7 +56,7 @@ public class Mecanum implements Subsystem {
         // Example chassis speeds: 1 meter per second forward, 3 meters
         // per second to the left, and rotation at 1.5 radians per second
         // counterclockwise.
-        ChassisSpeeds speeds = new ChassisSpeeds(1.0, 3.0, 1.5);
+        ChassisSpeeds speeds = new ChassisSpeeds(forward, strafe, rotation);
         // Convert to wheel speeds
         MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.toWheelSpeeds(speeds);
         // Get the individual wheel speeds
@@ -64,6 +64,10 @@ public class Mecanum implements Subsystem {
         frontRight = wheelSpeeds.frontRightMetersPerSecond;
         rearLeft = wheelSpeeds.rearLeftMetersPerSecond;
         rearRight = wheelSpeeds.rearRightMetersPerSecond;
+        System.out.println("Right Front " + frontRight);
+        System.out.println("Right Back " + rearRight);
+        System.out.println("Left Front " + frontLeft);
+        System.out.println("Right Back " + rearLeft);
     }
 
     public void update() {

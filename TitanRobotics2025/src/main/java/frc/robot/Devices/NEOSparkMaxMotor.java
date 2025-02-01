@@ -44,6 +44,7 @@ public  class NEOSparkMaxMotor {
             System.out.println("YOU SET THE SPEED OF A NONEXISTANT MOTOR: " + CANID);
         } else {
             m_motor.set(speed);
+            System.out.println("Speed is " + speed);
         }
     }
     public void setInverted(boolean isInverted){
