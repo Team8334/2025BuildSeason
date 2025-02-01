@@ -16,7 +16,7 @@ Controller driverController;
             System.out.println("404 Controller not found :(");
         }
 
-        mecanum = new Mecanum();
+        mecanum = Mecanum.getInstance();
     }
 
     public void teleopPeriodic() {
