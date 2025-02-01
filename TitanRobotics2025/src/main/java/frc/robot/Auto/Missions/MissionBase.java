@@ -3,6 +3,11 @@ import frc.robot.Auto.AutoMissionEndedException;
 import frc.robot.Auto.Actions.Actions;
 import edu.wpi.first.wpilibj.DriverStation;
 
+
+/*
+ * This mission base does something
+ */
+
 public abstract class MissionBase {
     
 /**

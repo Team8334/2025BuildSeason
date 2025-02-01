@@ -13,6 +13,8 @@ public class AutoMissionChooser {
         MoveAcrossLineMission,
         exampleMission,
         ScoringMission,
+        RedScoringMission,
+        BlueScoringMission,
     }
 
     private DesiredMission cachedDesiredMission = DesiredMission.doNothing;

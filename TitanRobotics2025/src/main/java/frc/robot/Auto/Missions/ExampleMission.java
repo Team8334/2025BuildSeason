@@ -1,13 +1,20 @@
 package frc.robot.Auto.Missions;
 
-
-// import the actions from the auto.actions folder
+//import these so that the mission is an option
 import frc.robot.Auto.AutoMissionChooser;
 import frc.robot.Auto.AutoMissionEndedException;
+
+// import the actions from the auto.actions folder
 import frc.robot.Auto.Actions.DriveForTimeAction;
 import frc.robot.Auto.Actions.ParallelAction;
 import frc.robot.Auto.Actions.TurnDegreesAction;
 import frc.robot.Auto.Actions.WaitAction;
+
+
+/*
+ * This mission is an example mission
+ * Exemplifies a normal action and a parallel action
+ */
 
 public class ExampleMission extends MissionBase {
     @Override
