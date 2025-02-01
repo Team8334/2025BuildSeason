@@ -6,6 +6,13 @@ import java.util.List;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/* NEED TO TEST
+ * Idk what this action does yet and wasn't used last year
+ * Same as the parallel acction except line 17, 35, and all
+ * of isFinished function
+ * supposedly made by Jacob
+ */
+
 public class SeriesAction implements Actions {
     private ArrayList<Actions> actionsToExecute;
     private int currentActionIndex;
@@ -41,7 +48,8 @@ public class SeriesAction implements Actions {
             actionsToExecute.get(currentActionIndex).done();
             currentActionIndex++;
             //currentActionIndex will be incremented at this point
-            //therefore if the current action is the last one, it will be equal to the the array list size instead of said size minus one
+            //therefore if the current action is the last one, it will be equal to 
+            //the the array list size instead of said size minus one
             if (currentActionIndex == actionsToExecute.size()) { 
                 return true; 
             }

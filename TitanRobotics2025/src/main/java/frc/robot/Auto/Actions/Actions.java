@@ -1,5 +1,10 @@
 package frc.robot.Auto.Actions;
 
+//import subsystems and wpi stuff here
+
+/* This action is a basic template for all actions
+*/
+
 public interface Actions {
     /**
      * Run code once when the action is started, for setup

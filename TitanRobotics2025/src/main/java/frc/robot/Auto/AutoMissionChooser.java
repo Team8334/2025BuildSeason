@@ -12,7 +12,7 @@ public class AutoMissionChooser {
         doNothing,
         MoveAcrossLineMission,
         exampleMission,
-        ScoringMission
+        ScoringMission,
     }
 
     private DesiredMission cachedDesiredMission = DesiredMission.doNothing;

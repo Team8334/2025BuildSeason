@@ -6,6 +6,9 @@ import java.util.List;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/* This action can run two actions on the robot at once
+ */
+
 public class ParallelAction implements Actions {
     private ArrayList<Actions> actionsToExecute;
 
