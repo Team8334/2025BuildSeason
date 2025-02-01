@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/*
+ * This lets the person choose which mission is executed
+ */
+
 public class AutoMissionChooser {
     enum DesiredMission {
         doNothing,

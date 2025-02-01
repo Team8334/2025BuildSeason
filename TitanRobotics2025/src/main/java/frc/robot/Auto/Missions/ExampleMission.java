@@ -1,6 +1,6 @@
 package frc.robot.Auto.Missions;
 
-//import these so that the mission is an option
+//import these so that the mission is an option when testing
 import frc.robot.Auto.AutoMissionChooser;
 import frc.robot.Auto.AutoMissionEndedException;
 
@@ -13,7 +13,7 @@ import frc.robot.Auto.Actions.WaitAction;
 
 /*
  * This mission is an example mission
- * Exemplifies a normal action and a parallel action
+ * Has examples of a normal action and a parallel action
  */
 
 public class ExampleMission extends MissionBase {
